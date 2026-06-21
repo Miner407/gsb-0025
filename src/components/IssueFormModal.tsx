@@ -83,7 +83,7 @@ export const IssueFormModal: React.FC<IssueFormModalProps> = ({
     e.preventDefault();
     if (!validate()) return;
 
-    const submitData: IssueCreateRequest = {
+    const submitData: IssueCreateRequest | IssueUpdateRequest = {
       customerName: formData.customerName!,
       channel: formData.channel!,
       description: formData.description!,
@@ -93,7 +93,7 @@ export const IssueFormModal: React.FC<IssueFormModalProps> = ({
       solution: formData.solution || '',
     };
 
-    onSubmit(issue ? { ...submitData, id: issue.id } : submitData);
+    onSubmit(submitData);
   };
 
   const handleTagToggle = (tag: string) => {

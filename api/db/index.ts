@@ -11,7 +11,8 @@ if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-const dbPath = join(dataDir, 'issues.db');
+const dbName = process.env.NODE_ENV === 'test' ? 'issues.test.db' : 'issues.db';
+const dbPath = join(dataDir, dbName);
 
 export const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
